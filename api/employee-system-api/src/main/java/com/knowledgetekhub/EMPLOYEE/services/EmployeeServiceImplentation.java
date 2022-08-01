@@ -39,4 +39,13 @@ public class EmployeeServiceImplentation implements EmployeeService {
         )).collect(Collectors.toList());
         return employee;
     }
+
+    @Override
+    public boolean deleteEmployee(long id) {
+        EmployeeEntity employee = employeeRepository.findById(id).get();
+        employeeRepository.delete(employee);
+        return true;
+    }
+
+
 }
