@@ -33,6 +33,12 @@ export default function EmployeeList() {
     })
   }
 
+  const editEmployee = (e, id)=>{
+    e.preventDefault()
+    navigate(`/editEmployee/${id}`)
+  }
+
+
   return (
     <div className="container mx-auto my-6">
       <div className="h-12">
@@ -84,15 +90,15 @@ export default function EmployeeList() {
                       </td>
 
                       <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
-                        <a
-                          href="/"
+                        <button
+                          onClick={(e, id)=>editEmployee(e, employee.id)}
                           className="text-indigo-600 hover:text-indigo-800 px-4"
                         >
                           Edit
-                        </a>
-                        <a onClick={(e, id)=>deleteEmployee(e, employee.id)} className="text-red-600 hover:text-red-800 hover:cursor-pointer cursor-pointer">
+                        </button>
+                        <button onClick={(e, id)=>deleteEmployee(e, employee.id)} className="text-red-600 hover:text-red-800 hover:cursor-pointer cursor-pointer">
                           Delete
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   );
