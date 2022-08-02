@@ -22,6 +22,17 @@ export default function EmployeeList() {
     fetchData();
   }, []);
 
+  const deleteEmployee = (e, id) =>{
+    e.preventDefault()
+    EmployeeService.deleteEmployee(id).then((res)=>{
+        if(employees){
+            setEmployees((prevElement)=>{
+                return prevElement.filter((employee)=>employee.id !==id)
+            })
+        }
+    })
+  }
+
   return (
     <div className="container mx-auto my-6">
       <div className="h-12">
@@ -79,7 +90,7 @@ export default function EmployeeList() {
                         >
                           Edit
                         </a>
-                        <a href="/" className="text-red-600 hover:text-red-800">
+                        <a onClick={(e, id)=>deleteEmployee(e, employee.id)} className="text-red-600 hover:text-red-800 hover:cursor-pointer cursor-pointer">
                           Delete
                         </a>
                       </td>
